@@ -31,8 +31,8 @@
 
 //Global Variables
 
-char Scan_Result;                       // result of input scan
-char Last_Direct;                       // previous direction saved
+int Scan_Result;                       // result of input scan
+int Last_Direct;                       // previous direction saved
 
 
 long long int system_time;

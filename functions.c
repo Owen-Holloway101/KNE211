@@ -175,9 +175,9 @@ int Scan_Inputs()               // scan opto inputs
     M_Line_Scan = M_LINE_SCAN_PIN;
     R_Line_Scan = R_LINE_SCAN_PIN;
   
-    if (L_Line_Scan) { Scan_Value = Scan_Value + 4;     New_Direct = -1;}
-    if (M_Line_Scan) { Scan_Value = Scan_Value + 2;                     }
-    if (R_Line_Scan) { Scan_Value = Scan_Value + 1;     New_Direct =  1;}
+    if (!L_Line_Scan) { Scan_Value = Scan_Value + 4;     New_Direct = -1;}
+    if (!M_Line_Scan) { Scan_Value = Scan_Value + 2;                     }
+    if (!R_Line_Scan) { Scan_Value = Scan_Value + 1;     New_Direct =  1;}
     Scan_Value = Scan_Result[Scan_Value];   // convert scan via table
   
     switch (Scan_Value)
