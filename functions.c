@@ -99,7 +99,7 @@ int * PID() {
     
     double delta_error_delta_time = current_error/(system_time-diff_time);
     
-    double deltaPWM = Kp*abs(current_error) + Ki*(error_sum/system_time) + Ka*delta_error_delta_time;
+    double deltaPWM = Kp*abs(current_error)*(max_speed/MAX_SPEED) + Ki*(error_sum/system_time) + Ka*delta_error_delta_time;
     
     int deltaPWM_cast = (int) ((double)deltaPWM*(max_speed/MAX_SPEED));
     

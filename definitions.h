@@ -13,17 +13,17 @@
 //Parameters
 
 //Ramp up scale
-#define     RAMP_UP         0.5
+#define     RAMP_UP         0.35
 
 //PID coefficients
-#define     K_P             60
+#define     K_P             90
 #define     K_I             00
 #define     K_A             00
 
 #define     MOTORA_CALIB    1                       //to fix calib
 #define     MOTORB_CALIB    1
 
-#define     MAX_SPEED       100                     //Max 255
+#define     MAX_SPEED       140                     //Max 255
 
 /*                      PIC16F1936-I/P
                         --------------
