@@ -109,12 +109,12 @@ int * PID() {
         PIDPWM[1] = 0;
     } else if (current_error < 0) {
         SYS_Led = 0;
-        PIDPWM[0] = MOTORA_CALIB * max_speed;
-        PIDPWM[1] = MOTORB_CALIB * (max_speed - deltaPWM_cast);
+        PIDPWM[0] = MOTORA_CALIB * max_speed - 20;
+        PIDPWM[1] = MOTORB_CALIB * (max_speed - deltaPWM_cast) - 20;
     } else if (current_error > 0) {
         SYS_Led = 1;
-        PIDPWM[0] = MOTORA_CALIB * (max_speed - deltaPWM_cast);
-        PIDPWM[1] = MOTORB_CALIB * max_speed;
+        PIDPWM[0] = MOTORA_CALIB * (max_speed - deltaPWM_cast) - 20;
+        PIDPWM[1] = MOTORB_CALIB * max_speed - 20;
     } else if (current_error == 0) {
         PIDPWM[0] = MOTORA_CALIB*max_speed;
         PIDPWM[1] = MOTORB_CALIB*max_speed;
