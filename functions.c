@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <math.h>
+
 int error_sum = 0;
 
 int last_error = 0;
@@ -99,7 +101,7 @@ int * PID() {
     
     double delta_error_delta_time = current_error/(system_time-diff_time);
     
-    double deltaPWM = Kp*abs(current_error)*(max_speed/MAX_SPEED) + Ki*(error_sum/system_time) + Ka*delta_error_delta_time;
+    double deltaPWM = Kp*sqrt(abs(current_error))*(max_speed/MAX_SPEED) + Ki*(error_sum/system_time) + Ka*delta_error_delta_time;
     
     int deltaPWM_cast = (int) ((double)deltaPWM*(max_speed/MAX_SPEED));
     
@@ -109,12 +111,12 @@ int * PID() {
         PIDPWM[1] = 0;
     } else if (current_error < 0) {
         SYS_Led = 0;
-        PIDPWM[0] = MOTORA_CALIB * max_speed - 20;
-        PIDPWM[1] = MOTORB_CALIB * (max_speed - deltaPWM_cast) - 20;
+        PIDPWM[0] = MOTORA_CALIB * max_speed - SLOWDOWN;
+        PIDPWM[1] = MOTORB_CALIB * (max_speed - deltaPWM_cast) - SLOWDOWN;
     } else if (current_error > 0) {
         SYS_Led = 1;
-        PIDPWM[0] = MOTORA_CALIB * (max_speed - deltaPWM_cast) - 20;
-        PIDPWM[1] = MOTORB_CALIB * max_speed - 20;
+        PIDPWM[0] = MOTORA_CALIB * (max_speed - deltaPWM_cast) - SLOWDOWN;
+        PIDPWM[1] = MOTORB_CALIB * max_speed - SLOWDOWN;
     } else if (current_error == 0) {
         PIDPWM[0] = MOTORA_CALIB*max_speed;
         PIDPWM[1] = MOTORB_CALIB*max_speed;
